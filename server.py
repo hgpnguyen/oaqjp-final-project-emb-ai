@@ -1,3 +1,8 @@
+'''This is a Flask server running module
+The server contains two path: 
+    "/" for index.html
+    "/emotionDetector" for sending text to detector
+'''
 from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
 
@@ -5,10 +10,12 @@ app = Flask("Emotion Detection")
 
 @app.route("/")
 def render_index_page():
+    '''This function renders index.html'''
     return render_template('index.html')
 
 @app.route("/emotionDetector")
 def sent_detector():
+    '''This function receives text from GET method and sends it to detector'''
     text_to_detect = request.args.get("textToAnalyze")
 
     response = emotion_detector(text_to_detect)
