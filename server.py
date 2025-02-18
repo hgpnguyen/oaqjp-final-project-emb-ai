@@ -20,6 +20,9 @@ def sent_detector():
     sadness_score = response["sadness"]
     dominant_emotion = response["dominant_emotion"]
 
+    if not dominant_emotion:
+        return "<b>Invalid text! Please try again!</b>"
+
     return f'''For the given statement, the system response is \
     'anger': {anger_score}, 'disgust': {disgust_score}, 'fear': {fear_score}, 'joy': {joy_score} and 'sadness': {sadness_score}. \
     The dominant emotion is <b>{dominant_emotion}</b>.'''
